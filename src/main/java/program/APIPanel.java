@@ -60,6 +60,7 @@ public class APIPanel extends JPanel {
         } finally {
             con.disconnect();
         }
+        return null;
     }
     public void doGet(String requestURL, String authType, boolean downloadImage) {
         getRequestJSON = getRequest(requestURL, authType);
