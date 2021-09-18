@@ -65,6 +65,7 @@ public class APIPanel extends JPanel {
 
     }
 
+    /*
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -72,8 +73,9 @@ public class APIPanel extends JPanel {
         int w = buffImg.getWidth();
         int h = buffImg.getHeight();
         g2.drawImage(buffImg, 0, 0, w, h, null);
-    }
 
+    }
+    */
 
 
 
