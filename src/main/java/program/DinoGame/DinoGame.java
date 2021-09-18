@@ -6,16 +6,16 @@ import javax.swing.JFrame;
 
 public class DinoGame extends Canvas implements KeyListener {
 
-    final int WIDTH = 1000;
-    final int HEIGHT = 500;
+    private int width = DinoConstants.SCREEN_WIDTH;
+    private int height = DinoConstants.SCREEN_HEIGHT;
 
-    Dinosaur dino = new Dinosaur();
+    private Dinosaur dino = new Dinosaur();
     
     public DinoGame() {
         JFrame frame = new JFrame("Dino Game");
 
         frame.add(this);
-        frame.setSize(WIDTH, HEIGHT);
+        frame.setSize(width, height);
         frame.setVisible(true);
 
         frame.setBackground(Color.white);
@@ -26,13 +26,14 @@ public class DinoGame extends Canvas implements KeyListener {
     public void paint(Graphics g) {
         // Draw background because it's not actually white
         g.setColor(Color.white);
-        g.fillRect(-1, -1, WIDTH + 2, HEIGHT + 2);
+        g.fillRect(-1, -1, width + 2, height + 2);
 
         // Draw dinosaur
+        dino.paintDino(g);
 
         // Draw ground
         g.setColor(Color.black);
-        g.fillRect(0, DinoConstants.GROUND_LEVEL, WIDTH, 3);
+        g.fillRect(0, DinoConstants.GROUND_LEVEL, width, 3);
     }
 
     public void update(Graphics g) {
