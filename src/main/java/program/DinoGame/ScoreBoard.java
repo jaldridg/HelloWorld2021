@@ -8,8 +8,8 @@ public class ScoreBoard{
     int Score = 0;
     int highScore = 0;
 
-    public int printScore{
-        if(){
+    public void printScore() {
+        if (true){
             Score++;
         }
         else{

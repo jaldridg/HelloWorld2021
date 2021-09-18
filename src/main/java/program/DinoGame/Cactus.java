@@ -1,4 +1,4 @@
-package src.main.java.program.DinoGame;
+package main.java.program.DinoGame;
 
 import java.awt.*;
 import main.java.program.DinoGame.DinoConstants;
@@ -25,8 +25,8 @@ public class Cactus {
         System.out.println("xPos: "+ xPos);
     }
 
-    public void moveCactus(int shiftAmount) {
-        xPos -= shiftAmount;
+    public void moveCactus() {
+        xPos -= pixelSize * 2;
     }
 
 }

@@ -8,6 +8,8 @@ public class Dinosaur {
     final int[][] dinosaurPixels = DinoConstants.DINOSAUR_PIXELS;
 
     private int height = (dinosaurPixels.length - 3) * pixelSize;
+    private int defaultHeight = height;
+    private int vel = 0;
 
     public void paintDino(Graphics g) {
         for(int i = 0; i < dinosaurPixels[0].length; i++) {
@@ -21,5 +23,21 @@ public class Dinosaur {
             }
         }
     }
-    
+
+    public void moveDino() {
+        height += vel;
+        vel -= 1;
+        if(defaultHeight > height) {
+            setDinoVelocity(0);
+        }
+    }    
+
+
+    private void setDinoPosition(int velocity) {
+        height = height;
+    }
+
+    public void setDinoVelocity(int velocity) {
+        vel = velocity;
+    }
 }
