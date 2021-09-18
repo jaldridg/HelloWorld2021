@@ -35,7 +35,7 @@ public class DinoGame extends Canvas implements KeyListener {
     public void update(Graphics g) {
         timer = System.currentTimeMillis();
 
-        if(timer % (int)(1000 / fps) == 0) {
+        if(timer % 30 == 0) {
             cactus.moveCactus();
             dino.moveDino();
 
