@@ -1,4 +1,4 @@
-package main.java.program.DinoGame;
+package src.main.java.program.DinoGame;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -30,7 +30,7 @@ public class DinoGame extends Canvas implements KeyListener {
     public void update(Graphics g) {
         timer = System.currentTimeMillis();
 
-        if(timer % 25 == 0) {
+        if(timer % 33 == 0) {
         cactus.moveCactus();
         dino.moveDino();
 
@@ -38,15 +38,19 @@ public class DinoGame extends Canvas implements KeyListener {
         g.setColor(Color.white);
         g.fillRect(-1, -1, width + 2, height + 2);
 
-        // Draw
+        // Draw stuff
         dino.paintDino(g);
         cactus.paintCactus(g);
 
         // Draw ground
         g.setColor(Color.black);
         g.fillRect(0, DinoConstants.GROUND_LEVEL, width, 3);
-        }
 
+        // Test boundaries
+        g.setColor(Color.red);
+        g.drawLine(0, cactus.getTopBoundary(), width, cactus.getTopBoundary());
+        g.drawLine(cactus.getLeftBoundary(), 0, cactus.getLeftBoundary(), height);        
+        }
         repaint();
     }
 
@@ -54,7 +58,7 @@ public class DinoGame extends Canvas implements KeyListener {
     public void keyReleased(KeyEvent e) { }
     public void keyPressed(KeyEvent e) { 
         if(e.getKeyCode() == 32) {
-            dino.setDinoVelocity(18);
+            dino.setDinoVelocity(26);
         }
     }
 
