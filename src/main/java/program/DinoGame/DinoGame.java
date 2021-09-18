@@ -1,15 +1,17 @@
-package program.DinoGame;
+package src.main.java.program.DinoGame;
 
 import java.awt.*;
 import java.awt.event.*;
 
-
 import javax.swing.JFrame;
+import src.main.java.program.DinoGame.Dinosaur;
+import src.main.java.program.DinoGame.DinoConstants;
+import src.main.java.program.DinoGame.Cactus;
 
 public class DinoGame extends Canvas implements KeyListener {
 
-    private int width = main.java.program.DinoGame.DinoConstants.SCREEN_WIDTH;
-    private int height = main.java.program.DinoGame.DinoConstants.SCREEN_HEIGHT;
+    private int width = DinoConstants.SCREEN_WIDTH;
+    private int height = DinoConstants.SCREEN_HEIGHT;
 
     private Dinosaur dino = new Dinosaur();
     private Cactus cactus = new Cactus();
@@ -18,14 +20,14 @@ public class DinoGame extends Canvas implements KeyListener {
     private long timer = 0;
 
     public DinoGame() {
-        JFrame frame = new JFrame("Dino Game");
+        /*JFrame frame = new JFrame("Dino Game");
         setBackground(Color.white);
 
         addKeyListener(this);
         frame.add(this);
         frame.setSize(width, height);
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
 
         repaint();
     }
@@ -47,7 +49,7 @@ public class DinoGame extends Canvas implements KeyListener {
 
             // Draw ground
             g.setColor(Color.black);
-            g.fillRect(0, main.java.program.DinoGame.DinoConstants.GROUND_LEVEL, width, 3);
+            g.fillRect(0, DinoConstants.GROUND_LEVEL, width, 3);
 
             // Test boundaries
             g.setColor(Color.red);

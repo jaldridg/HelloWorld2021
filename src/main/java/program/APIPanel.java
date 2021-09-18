@@ -1,9 +1,8 @@
 package src.main.java.program;
+
 import java.awt.*;
 import org.json.JSONObject;
-import java.awt.event.*;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
+
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.*;
@@ -12,12 +11,13 @@ import javax.imageio.*;
 import java.util.Scanner;
 
 public class APIPanel extends JPanel {
-    private JPanel panel;
+
     private HttpURLConnection con;
     private String nasaAuth = "";
     private JSONObject getRequestJSON;
     private BufferedImage buffImg;
     private Dimension size;
+
     public APIPanel(Dimension size) {
         this.size = size;
         this.setMinimumSize(size);
@@ -60,6 +60,7 @@ public class APIPanel extends JPanel {
         } finally {
             con.disconnect();
         }
+        return null;
     }
     public void doGet(String requestURL, String authType, boolean downloadImage) {
         getRequestJSON = getRequest(requestURL, authType);
@@ -76,7 +77,6 @@ public class APIPanel extends JPanel {
         }
 
 
-
     }
 
 
@@ -90,8 +90,6 @@ public class APIPanel extends JPanel {
             g2.drawImage(buffImg, 0, 0, w, h, null);
 
         }
-
-
     }
 
 
