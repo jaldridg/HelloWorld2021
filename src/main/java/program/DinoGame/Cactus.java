@@ -1,8 +1,7 @@
 package main.java.program.DinoGame;
 
+import src.main.java.program.DinoGame.DinoConstants;
 import java.awt.*;
-import main.java.program.DinoGame.DinoConstants;
-
 public class Cactus {
 
     private final int pixelSize = DinoConstants.PIXEL_SIZE;

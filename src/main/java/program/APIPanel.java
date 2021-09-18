@@ -7,9 +7,16 @@ public class APIPanel extends JPanel {
     private JPanel panel;
 
 
-    public APIPanel() {
-        panel = new JPanel();
+    public APIPanel(Dimension size) {
+        this.setSize(size);
+        this.setPreferredSize(size);
+        this.setBackground(Color.darkGray);
     }
+    public void getPanel() {
+    }
+
+
+
 
 
 
