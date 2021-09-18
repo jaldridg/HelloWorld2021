@@ -1,4 +1,4 @@
-package src.main.java.program;
+package program;
 import java.awt.*;
 import org.json.JSONObject;
 import java.awt.event.*;

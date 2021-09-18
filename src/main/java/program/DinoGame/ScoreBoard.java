@@ -1,6 +1,7 @@
-package main.java.program.DinoGame;
+package src.main.java.program.DinoGame;
 
 import java.awt.*;
+import src.main.java.program.DinoGame.*;
 
 public class ScoreBoard{
     final int pixelSize = 2*DinoConstants.PIXEL_SIZE;

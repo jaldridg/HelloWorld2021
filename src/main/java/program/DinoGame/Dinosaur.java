@@ -1,4 +1,4 @@
-package main.java.program.DinoGame;
+package src.main.java.program.DinoGame;
 
 import java.awt.*;
 
