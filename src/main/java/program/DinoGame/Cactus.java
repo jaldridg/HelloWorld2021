@@ -4,15 +4,15 @@ import java.awt.*;
 
 public class Cactus {
 
-    final int pixelSize = DinoConstants.PIXEL_SIZE;
-    final int[][] cactusPixels = DinoConstants.CACTUS_PIXELS;
+    private final int pixelSize = DinoConstants.PIXEL_SIZE;
+    private final int[][] cactusPixels = DinoConstants.CACTUS_PIXELS;
 
-    int xPos = DinoConstants.SCREEN_WIDTH / 2;
+    private int xPos = DinoConstants.SCREEN_WIDTH + 100;
  
     public void paintCactus(Graphics g) {
         int height = (cactusPixels.length - 3) * pixelSize;
-        for(int i = 0; i < cactusPixels.length; i++) {
-            for(int j = 0; j < cactusPixels[0].length; j++) {
+        for(int i = 0; i < cactusPixels[0].length; i++) {
+            for(int j = 0; j < cactusPixels.length; j++) {
                 int color = Math.abs(cactusPixels[j][i] - 1) * 255;
                 g.setColor(new Color(color, color, color));
                 g.fillRect(i * pixelSize + xPos, 
@@ -21,10 +21,11 @@ public class Cactus {
                            pixelSize);
             }
         }
+        System.out.println("xPos: "+ xPos);
     }
 
     public void moveCactus(int shiftAmount) {
-        xPos += shiftAmount;
+        xPos -= shiftAmount;
     }
 
 }
