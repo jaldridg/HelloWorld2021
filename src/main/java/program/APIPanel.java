@@ -1,10 +1,15 @@
-package main.java.program;
+package src.main.java.program;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-class APIPanel extends JFrame {
-    
+class APIPanel extends JPanel {
+    private JPanel panel;
+
+
+    public APIPanel() {
+        panel = new JPanel();
+    }
 
 
 
