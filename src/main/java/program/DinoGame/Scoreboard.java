@@ -7,5 +7,18 @@ public class Scoreboard{
 
     int Score = 0;
     int highScore = 0;
+    String allScore = Score + " " + highScore;
+
+    public String printScore{
+        if(){
+            Score++;
+        }
+        else{
+            highScore = Score;
+            Score = 0;
+        }
+
+        return allScore
+    }
 
 }
