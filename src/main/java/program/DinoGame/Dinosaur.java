@@ -26,15 +26,14 @@ public class Dinosaur {
 
     public void moveDino() {
         height += vel;
-        vel -= 1;
+        vel -= 2;
         if(defaultHeight > height) {
             setDinoVelocity(0);
         }
     }    
 
-
-    private void setDinoPosition(int velocity) {
-        height = height;
+    public int getDinoVelocity() {
+        return vel;
     }
 
     public void setDinoVelocity(int velocity) {

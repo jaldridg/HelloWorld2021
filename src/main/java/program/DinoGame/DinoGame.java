@@ -9,7 +9,8 @@ public class DinoGame extends Canvas implements KeyListener {
     private int height = DinoConstants.SCREEN_HEIGHT;
 
     private Dinosaur dino = new Dinosaur();
-    private Cactus cactus = new Cactus();
+    private Cactus cactusOne = new Cactus();
+    private Cactus cactusTwo = new Cactus();
     
     private long timer = 0;
 
@@ -30,17 +31,19 @@ public class DinoGame extends Canvas implements KeyListener {
     public void update(Graphics g) {
         timer = System.currentTimeMillis();
 
-        if(timer % 25 == 0) {
-        cactus.moveCactus();
+        if(timer % 33 == 0) {
+        cactusOne.moveCactus();
+        cactusOne.moveCactus();
         dino.moveDino();
 
         // Draw background because it's not actually white
         g.setColor(Color.white);
         g.fillRect(-1, -1, width + 2, height + 2);
 
-        // Draw
+        // Draw stuff
         dino.paintDino(g);
-        cactus.paintCactus(g);
+        cactusOne.paintCactus(g);
+        cactusTwo.paintCactus(g);
 
         // Draw ground
         g.setColor(Color.black);
@@ -54,7 +57,7 @@ public class DinoGame extends Canvas implements KeyListener {
     public void keyReleased(KeyEvent e) { }
     public void keyPressed(KeyEvent e) { 
         if(e.getKeyCode() == 32) {
-            dino.setDinoVelocity(18);
+            dino.setDinoVelocity(26);
         }
     }
 

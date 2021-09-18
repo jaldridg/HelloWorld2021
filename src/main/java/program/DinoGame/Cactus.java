@@ -27,6 +27,9 @@ public class Cactus {
 
     public void moveCactus() {
         xPos -= pixelSize * 2;
+        if(xPos < -100) {
+            xPos = DinoConstants.SCREEN_WIDTH + 100 + (int) (Math.random() * 500);
+        }
     }
 
 }
