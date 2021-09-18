@@ -1,14 +1,13 @@
-package main.java.program.DinoGame;
-
+package src.main.java.program.DinoGame;
+import src.main.java.program.DinoGame.DinoConstants;
 import java.awt.*;
-
 public class Cactus {
 
     final int pixelSize = DinoConstants.PIXEL_SIZE;
     final int[][] cactusPixels = DinoConstants.CACTUS_PIXELS;
 
     int xPos = DinoConstants.SCREEN_WIDTH / 2;
- 
+
     public void paintCactus(Graphics g) {
         int height = (cactusPixels.length - 3) * pixelSize;
         for(int i = 0; i < cactusPixels.length; i++) {

@@ -1,4 +1,4 @@
-package main.java.program.DinoGame;
+package src.main.java.program.DinoGame;
 
 public final class DinoConstants {
 
