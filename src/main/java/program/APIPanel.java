@@ -1,9 +1,9 @@
-package src.main.java.program;
+package main.java.program.DinoGame;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-class APIPanel extends JPanel {
+public class APIPanel extends JPanel {
     private JPanel panel;
 
 

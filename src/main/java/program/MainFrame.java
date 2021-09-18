@@ -1,4 +1,4 @@
-package src.main.java.program;
+package main.java.program;
 
 import main.java.utils.ScreenDimension;
 import src.main.java.program.APIPanel;

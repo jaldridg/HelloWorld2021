@@ -1,4 +1,4 @@
-package src.main.java.program.DinoGame;
+package main.java.program.DinoGame;
 
 import java.awt.*;
 import main.java.program.DinoGame.DinoConstants;
