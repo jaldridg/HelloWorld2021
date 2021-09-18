@@ -7,9 +7,8 @@ public class Scoreboard{
 
     int Score = 0;
     int highScore = 0;
-    String allScore = Score + " " + highScore;
 
-    public String printScore{
+    public int printScore{
         if(){
             Score++;
         }
@@ -17,8 +16,6 @@ public class Scoreboard{
             highScore = Score;
             Score = 0;
         }
-
-        return allScore
     }
 
 }

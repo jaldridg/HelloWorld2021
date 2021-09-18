@@ -7,7 +7,7 @@ public class Cactus {
     final int[][] cactusPixels = DinoConstants.CACTUS_PIXELS;
 
     int xPos = DinoConstants.SCREEN_WIDTH / 2;
-
+ 
     public void paintCactus(Graphics g) {
         int height = (cactusPixels.length - 3) * pixelSize;
         for(int i = 0; i < cactusPixels.length; i++) {
