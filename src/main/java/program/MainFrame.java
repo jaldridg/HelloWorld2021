@@ -1,7 +1,7 @@
-package program;
+package src.main.java.program;
 
-import utils.ScreenDimension;
-import program.APIPanel;
+import src.main.java.utils.ScreenDimension;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -21,18 +21,14 @@ public class MainFrame extends JFrame{
         mainFrame.setSize(mainFrame.getMainFrameSize());
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        JPanel sortingPanel = new JPanel();
-        sortingPanel.setSize(mainFrame.getMainFrameSize());
-        mainFrame.add(sortingPanel);
         JPanel[] panels = new JPanel[6];
 
         for (int i = 0; i < 6; i++) {
-            APIPanel apiPanel = new APIPanel(mainFrame.getPanelDimension());
+            src.main.java.program.NASAPanel NASAPanel = new src.main.java.program.NASAPanel(mainFrame.getPanelDimension());
             if(i == 0) {
-                //apiPanel.doGet("https://api.nasa.gov/planetary/apod?api_key=APIKEY", "NASA", true);
+                NASAPanel.doGet("https://api.nasa.gov/planetary/apod?api_key=APIKEY", "NASA", true);
             }
-            panels[i] = apiPanel;
+            panels[i] = NASAPanel;
         }
 
         mainFrame.addInitialPanel(panels);
@@ -55,7 +51,7 @@ public class MainFrame extends JFrame{
         updateDimension(new Dimension(ScreenDimension.getScreenWidth() * 2 / 3,
                                           ScreenDimension.getScreenHeight() * 2 / 3));
 
-        updatePanelDimension(new Dimension(mainFrameWidth * 9 / 10 / 3 , mainFrameHeight * 9 / 10 / 2));
+        updatePanelDimension(new Dimension(mainFrameWidth / 3 , mainFrameHeight / 2));
 
         setLayout(new GridBagLayout());
         mainFrameConstraints = new GridBagConstraints();
