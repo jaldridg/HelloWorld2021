@@ -1,6 +1,7 @@
-package main.java.program.DinoGame;
+package src.main.java.program.DinoGame;
 
 import java.awt.*;
+import main.java.program.DinoGame.DinoConstants;
 
 public class Cactus {
 
