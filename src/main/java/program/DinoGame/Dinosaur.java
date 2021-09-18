@@ -1,12 +1,12 @@
-package program.DinoGame;
+package src.main.java.program.DinoGame;
 
 import java.awt.*;
 
 public class Dinosaur {
 
-    final int pixelSize = main.java.program.DinoGame.DinoConstants.PIXEL_SIZE;
-    final int[][] dinosaurPixels = main.java.program.DinoGame.DinoConstants.DINOSAUR_PIXELS;
-    final int[][] deadDinosaurPixels = main.java.program.DinoGame.DinoConstants.DEAD_DINOSAUR_PIXELS;
+    final int pixelSize = DinoConstants.PIXEL_SIZE;
+    final int[][] dinosaurPixels = DinoConstants.DINOSAUR_PIXELS;
+    final int[][] deadDinosaurPixels = DinoConstants.DEAD_DINOSAUR_PIXELS;
 
     private int height = (dinosaurPixels.length - 3) * pixelSize;
     private int defaultHeight = height;
@@ -18,7 +18,7 @@ public class Dinosaur {
                 int color = dinosaurPixels[j][i] * 255;
                 g.setColor(new Color(color, color, color));
                 g.fillRect(i * pixelSize + 100, 
-                           j * pixelSize + main.java.program.DinoGame.DinoConstants.GROUND_LEVEL - height,
+                           j * pixelSize + DinoConstants.GROUND_LEVEL - height, 
                            pixelSize, 
                            pixelSize);
             }
@@ -31,7 +31,7 @@ public class Dinosaur {
                 int color = dinosaurPixels[j][i] * 255;
                 g.setColor(new Color(color, color, color));
                 g.fillRect(i * pixelSize + 100, 
-                           j * pixelSize + main.java.program.DinoGame.DinoConstants.GROUND_LEVEL - height,
+                           j * pixelSize + DinoConstants.GROUND_LEVEL - height, 
                            pixelSize, 
                            pixelSize);
             }
@@ -55,7 +55,7 @@ public class Dinosaur {
     }
 
     public int getBottomBoundary() {
-        return main.java.program.DinoGame.DinoConstants.GROUND_LEVEL - height + (pixelSize * dinosaurPixels.length);
+        return DinoConstants.GROUND_LEVEL - height + (pixelSize * dinosaurPixels.length);
     }
 
     public int getRightBoundary() {
