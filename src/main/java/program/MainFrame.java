@@ -1,6 +1,7 @@
-package main.java.program;
+package src.main.java.program;
 
 import main.java.utils.ScreenDimension;
+import src.main.java.program.APIPanel;
 import javax.swing.*;
 import java.awt.*;
 
