@@ -32,6 +32,17 @@ public class MainFrame extends JFrame{
             Dimension panelSize = mainFrame.getPanelDimension();
             if (i == 1) {
                 panel = addNasaPanel(panelSize);
+        for (int i = 0; i < 6; i++) {
+
+            if(i == 1) {
+                NASAPanel nasaPanel = new NASAPanel(mainFrame.getPanelDimension());
+                nasaPanel.doGet("https://api.nasa.gov/planetary/apod?api_key=APIKEY", "NASA", true);
+                panels[i] = nasaPanel;
+            }
+            else if(i == 2) {
+                WeatherPanel weatherPanel = new WeatherPanel(mainFrame.getPanelDimension());
+                    weatherPanel.doGet("https://api.openweathermap.org/data/2.5/onecall?lat=40.43&lon=-86.92&units=imperial&exclude=hourly,daily,alerts,minutely&appid=APIKEY", "WEATHER", false);
+                panels[i] = weatherPanel;
             }
             //else if (i == 1)
                 //panel.add(new DinoGame());
