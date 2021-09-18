@@ -26,10 +26,19 @@ public class Cactus {
     }
 
     public void moveCactus() {
-        xPos -= pixelSize * 2;
+        xPos -= pixelSize * 3;
         if(xPos < -100) {
             xPos = DinoConstants.SCREEN_WIDTH + 100 + (int) (Math.random() * 500);
         }
+    }
+
+    public int getTopBoundary() {
+        int height = (cactusPixels.length - 3) * pixelSize;
+        return DinoConstants.GROUND_LEVEL - height;
+    }
+
+    public int getLeftBoundary() {
+        return xPos;
     }
 
 }
