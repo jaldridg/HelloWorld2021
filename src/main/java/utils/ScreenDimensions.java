@@ -6,7 +6,7 @@ import java.awt.*;
  * Subclass of dimension specifically for holding the dimensions of the screen resolution
  *
  * @author Joseph Miller
- * @version September 10, 2021
+ * @version September 18, 2021
  *
  */
 
