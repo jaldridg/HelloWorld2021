@@ -1,7 +1,7 @@
-package main.java.program;
+package src.main.java.program;
 
-import main.java.utils.ScreenDimension;
-import main.java.program.APIPanel;
+import src.main.java.utils.ScreenDimension;
+import src.main.java.program.APIPanel;
 import javax.swing.*;
 import java.awt.*;
 
@@ -18,25 +18,33 @@ public class MainFrame extends JFrame{
 
     public static void main(String[] args) {
         MainFrame mainFrame = new MainFrame("HDash");
-        mainFrame.setSize(mainFrame.mainFrameSize);
+        mainFrame.setSize(mainFrame.getMainFrameSize());
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        APIPanel apiPanel = new APIPanel(mainFrame.panelDimension);
-        mainFrame.add(apiPanel);
+
+        JPanel sortingPanel = new JPanel();
+        sortingPanel.setSize(mainFrame.getMainFrameSize());
+        mainFrame.add(sortingPanel);
+        JPanel[] panels = new JPanel[6];
+
+        for (int i = 0; i < 6; i++) {
+            APIPanel apiPanel = new APIPanel(mainFrame.getPanelDimension());
+            panels[i] = apiPanel;
+        }
+
+        mainFrame.addInitialPanel(panels);
         mainFrame.setVisible(true);
-
-
     }
 
-    //defines sizes for the mainFrame
+    //Define sizes for the mainFrame
     private int mainFrameWidth;
     private int mainFrameHeight;
     private Dimension mainFrameSize;
 
-    //defines sizes for the app panels
-    private int panelWidth;
-    private int panelHeight;
+    //Define sizes for the app panels
     private Dimension panelDimension;
+
+    private final GridBagConstraints mainFrameConstraints;
 
     public MainFrame(String frameName) {
         super(frameName);
@@ -44,29 +52,43 @@ public class MainFrame extends JFrame{
         updateDimension(new Dimension(ScreenDimension.getScreenWidth() * 2 / 3,
                                           ScreenDimension.getScreenHeight() * 2 / 3));
 
-        updatePanelDimension(new Dimension(mainFrameWidth / 3, mainFrameHeight / 2));
+        updatePanelDimension(new Dimension(mainFrameWidth * 9 / 10 / 3 , mainFrameHeight * 9 / 10 / 2));
+
+        setLayout(new GridBagLayout());
+        mainFrameConstraints = new GridBagConstraints();
     }
 
-    public Dimension updateDimension (Dimension dim) {
+    public void updateDimension (Dimension dim) {
         this.mainFrameSize = (dim);
         this.mainFrameHeight = dim.height;
         this.mainFrameWidth = dim.width;
-        return dim;
     }
 
-    public Dimension updatePanelDimension (Dimension dim) {
+    public void updatePanelDimension (Dimension dim) {
         this.panelDimension = (dim);
-        this.panelHeight = dim.height;
-        this.panelWidth = dim.width;
-        return dim;
     }
-    public int getWidth() {
-        return mainFrameWidth;
+
+    public void addInitialPanel(JPanel[] panels) {
+        for (int i = 0; i < panels.length; i++) {
+            if (i < 3) {
+                mainFrameConstraints.gridx = i;
+                mainFrameConstraints.gridy = 0;
+            }
+            else {
+                mainFrameConstraints.gridx = i - 3;
+                mainFrameConstraints.gridy = 1;
+            }
+            if(i % 2 == 0)
+                panels[i].setBackground(Color.black);
+            add(panels[i], mainFrameConstraints);
+        }
     }
-    public int getHeight() {
-        return mainFrameHeight;
-    }
-    public Dimension getDimensions() {
+
+    public Dimension getMainFrameSize() {
         return mainFrameSize;
+    }
+
+    public Dimension getPanelDimension() {
+        return panelDimension;
     }
 }
