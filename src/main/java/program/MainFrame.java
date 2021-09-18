@@ -1,6 +1,6 @@
-package src.main.java.program;
+package main.java.program;
 
-import src.main.java.utils.ScreenDimension;
+import main.java.utils.ScreenDimension;
 import javax.swing.*;
 import java.awt.*;
 

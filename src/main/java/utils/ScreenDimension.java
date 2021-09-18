@@ -1,4 +1,4 @@
-package src.main.java.utils;
+package main.java.utils;
 import java.awt.*;
 
 /**
