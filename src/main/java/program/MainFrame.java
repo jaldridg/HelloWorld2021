@@ -1,6 +1,8 @@
 package src.main.java.program;
 
 import src.main.java.utils.ScreenDimension;
+import src.main.java.program.NASAPanel;
+import src.main.java.program.WeatherPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,11 +26,23 @@ public class MainFrame extends JFrame{
         JPanel[] panels = new JPanel[6];
 
         for (int i = 0; i < 6; i++) {
-            src.main.java.program.NASAPanel NASAPanel = new src.main.java.program.NASAPanel(mainFrame.getPanelDimension());
-            if(i == 0) {
-                NASAPanel.doGet("https://api.nasa.gov/planetary/apod?api_key=APIKEY", "NASA", true);
+
+            if(i == 1) {
+                NASAPanel nasaPanel = new NASAPanel(mainFrame.getPanelDimension());
+                nasaPanel.doGet("https://api.nasa.gov/planetary/apod?api_key=APIKEY", "NASA", true);
+                panels[i] = nasaPanel;
             }
-            panels[i] = NASAPanel;
+            else if(i == 2) {
+                WeatherPanel weatherPanel = new WeatherPanel(mainFrame.getPanelDimension());
+                    weatherPanel.doGet("https://api.openweathermap.org/data/2.5/onecall?lat=40.43&lon=-86.92&units=imperial&exclude=hourly,daily,alerts,minutely&appid=APIKEY", "WEATHER", false);
+                panels[i] = weatherPanel;
+            }
+            else {
+                NASAPanel nasaPanel = new NASAPanel(mainFrame.getPanelDimension());
+                panels[i] = nasaPanel;
+
+            }
+
         }
 
         mainFrame.addInitialPanel(panels);
