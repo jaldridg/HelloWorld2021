@@ -29,6 +29,9 @@ public class MainFrame extends JFrame{
 
         for (int i = 0; i < 6; i++) {
             APIPanel apiPanel = new APIPanel(mainFrame.getPanelDimension());
+            if(i == 0) {
+                //apiPanel.doGet("https://api.nasa.gov/planetary/apod?api_key=APIKEY", "NASA", true);
+            }
             panels[i] = apiPanel;
         }
 
