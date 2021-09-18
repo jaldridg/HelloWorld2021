@@ -2,13 +2,14 @@ package main.java.program.DinoGame;
 
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.JFrame;
 
 public class DinoGame extends Canvas implements KeyListener {
 
     final int PIXEL_SIZE = 5;
     
     public DinoGame() {
-        Frame frame = new Frame("Dino Game");
+        JFrame frame = new JFrame("Dino Game");
 
         frame.add(this);
         frame.setSize(1000, 500);
@@ -33,9 +34,7 @@ public class DinoGame extends Canvas implements KeyListener {
 
     public void keyTyped(KeyEvent e) { }
     public void keyReleased(KeyEvent e) { }
-    public void keyPressed(KeyEvent e) { 
-        repaint();
-    }
+    public void keyPressed(KeyEvent e) { }
 
     public static void main(String[] args) {
         DinoGame dg = new DinoGame();
