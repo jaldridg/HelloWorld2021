@@ -1,7 +1,7 @@
-package program;
+package src.main.java.program;
 
 import src.main.java.utils.ScreenDimension;
-import src.main.java.program.APIPanel;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -24,11 +24,11 @@ public class MainFrame extends JFrame{
         JPanel[] panels = new JPanel[6];
 
         for (int i = 0; i < 6; i++) {
-            APIPanel apiPanel = new APIPanel(mainFrame.getPanelDimension());
+            src.main.java.program.NASAPanel NASAPanel = new src.main.java.program.NASAPanel(mainFrame.getPanelDimension());
             if(i == 0) {
-                apiPanel.doGet("https://api.nasa.gov/planetary/apod?api_key=APIKEY", "NASA", true);
+                NASAPanel.doGet("https://api.nasa.gov/planetary/apod?api_key=APIKEY", "NASA", true);
             }
-            panels[i] = apiPanel;
+            panels[i] = NASAPanel;
         }
 
         mainFrame.addInitialPanel(panels);
