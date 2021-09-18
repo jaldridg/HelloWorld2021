@@ -16,15 +16,27 @@ import java.awt.*;
 public class MainFrame extends JFrame{
 
     public static void main(String[] args) {
-        System.out.println();
+        MainFrame mainFrame = new MainFrame("HDash");
+        mainFrame.setSize(mainFrame.mainFrameSize);
+        mainFrame.setLocationRelativeTo(null);
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.setVisible(true);
     }
 
-    private int mainFrameWidth = ScreenDimension.getScreenWidth() / 2 / 3;
-    private int mainFrameHeight = ScreenDimension.getScreenHeight() / 2 / 3;
-    private Dimension mainFrameSize = new Dimension(mainFrameWidth, mainFrameHeight);
+    private int mainFrameWidth;
+    private int mainFrameHeight;
+    private Dimension mainFrameSize;
 
-    public MainFrame() {
+    public MainFrame(String frameName) {
+        super(frameName);
 
+        mainFrameWidth = ScreenDimension.getScreenWidth() / 2 / 3;
+        mainFrameHeight = ScreenDimension.getScreenHeight() / 2 / 3;
+        mainFrameSize = new Dimension(mainFrameWidth, mainFrameHeight);
+    }
 
+    public Dimension updateDimensions(Dimension dim) {
+        this.mainFrameSize = (dim);
+        return dim;
     }
 }
