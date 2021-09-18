@@ -1,5 +1,5 @@
-package src.main.java.program.DinoGame;
-import src.main.java.program.DinoGame.DinoConstants;
+package main.java.program.DinoGame;
+
 import java.awt.*;
 
 public class ScoreBoard{

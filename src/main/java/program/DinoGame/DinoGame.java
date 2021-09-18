@@ -55,9 +55,7 @@ public class DinoGame extends Canvas implements KeyListener {
     public void keyPressed(KeyEvent e) { 
         if(e.getKeyCode() == 32) {
             dino.setDinoVelocity(18);
-            System.out.println("SPACE");
         }
-        repaint();
     }
 
     public static void main(String[] args) {

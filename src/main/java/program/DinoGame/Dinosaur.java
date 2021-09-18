@@ -14,7 +14,7 @@ public class Dinosaur {
     public void paintDino(Graphics g) {
         for(int i = 0; i < dinosaurPixels[0].length; i++) {
             for(int j = 0; j < dinosaurPixels.length; j++) {
-                int color = Math.abs(dinosaurPixels[j][i] - 1) * 255;
+                int color = dinosaurPixels[j][i] * 255;
                 g.setColor(new Color(color, color, color));
                 g.fillRect(i * pixelSize + DinoConstants.GROUND_LEVEL - 200, 
                            j * pixelSize + DinoConstants.GROUND_LEVEL - height, 
