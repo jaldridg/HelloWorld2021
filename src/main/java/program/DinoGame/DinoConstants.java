@@ -1,6 +1,9 @@
 package main.java.program.DinoGame;
 
-public final class PixelArrays {
+public final class DinoConstants {
+
+    static final int PIXEL_SIZE = 5;
+    static final int GROUND_LEVEL = 300;
     
     static final int[][] DINOSAUR_PIXELS = 
     { // 1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20
