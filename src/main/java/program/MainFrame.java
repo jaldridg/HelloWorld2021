@@ -21,9 +21,9 @@ public class MainFrame extends JFrame{
         mainFrame.setSize(mainFrame.mainFrameSize);
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setVisible(true);
-        APIPanel apiPanel = new APIPanel(mainFrame.getWidth()/6, mainFrame.getHeight()/6);
+        APIPanel apiPanel = new APIPanel(mainFrame.panelDimension);
         mainFrame.add(apiPanel);
+        mainFrame.setVisible(true);
 
 
     }
@@ -65,5 +65,8 @@ public class MainFrame extends JFrame{
     }
     public int getHeight() {
         return mainFrameHeight;
+    }
+    public Dimension getDimensions() {
+        return mainFrameSize;
     }
 }
