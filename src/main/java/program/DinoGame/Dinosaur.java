@@ -8,11 +8,13 @@ public class Dinosaur {
     final int[][] dinosaurPixels = DinoConstants.DINOSAUR_PIXELS;
 
     private int height = (dinosaurPixels.length - 3) * pixelSize;
+    private int defaultHeight = height;
+    private int vel = 0;
 
     public void paintDino(Graphics g) {
         for(int i = 0; i < dinosaurPixels[0].length; i++) {
             for(int j = 0; j < dinosaurPixels.length; j++) {
-                int color = Math.abs(dinosaurPixels[j][i] - 1) * 255;
+                int color = dinosaurPixels[j][i] * 255;
                 g.setColor(new Color(color, color, color));
                 g.fillRect(i * pixelSize + DinoConstants.GROUND_LEVEL - 200, 
                            j * pixelSize + DinoConstants.GROUND_LEVEL - height, 
@@ -21,5 +23,20 @@ public class Dinosaur {
             }
         }
     }
-    
+
+    public void moveDino() {
+        height += vel;
+        vel -= 2;
+        if(defaultHeight > height) {
+            setDinoVelocity(0);
+        }
+    }    
+
+    public int getDinoVelocity() {
+        return vel;
+    }
+
+    public void setDinoVelocity(int velocity) {
+        vel = velocity;
+    }
 }

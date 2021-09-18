@@ -1,16 +1,12 @@
 package main.java.program.DinoGame;
 
-public class ScoreBoard {
-package src.main.java.program.DinoGame;
-import src.main.java.program.DinoGame.DinoConstants;
 import java.awt.*;
 
-    public class ScoreBoard {
+public class ScoreBoard{
+    final int pixelSize = 2*DinoConstants.PIXEL_SIZE;
 
-        int Score = 0;
-        int highScore = 0;
-
-        String allScore = highScore + " " + Score;
+    int Score = 0;
+    int highScore = 0;
 
 /*    public int printScore{
         if(true){
@@ -23,5 +19,4 @@ import java.awt.*;
 
     }
 */
-    }
 }
