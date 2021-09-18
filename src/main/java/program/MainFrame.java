@@ -1,4 +1,3 @@
-
 package src.main.java.program;
 
 import src.main.java.utils.ScreenDimension;
