@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.JFrame;
+import src.main.java.program.DinoGame.Dinosaur;
+import src.main.java.program.DinoGame.DinoConstants;
+import src.main.java.program.DinoGame.Cactus;
 
 public class DinoGame extends Canvas implements KeyListener {
 

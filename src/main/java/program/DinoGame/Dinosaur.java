@@ -1,6 +1,7 @@
 package src.main.java.program.DinoGame;
 
 import java.awt.*;
+import src.main.java.program.DinoGame.DinoConstants;
 
 public class Dinosaur {
 

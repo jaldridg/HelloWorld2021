@@ -1,6 +1,7 @@
 package src.main.java.program.DinoGame;
 
 import java.awt.*;
+import src.main.java.program.DinoGame.DinoConstants;
 
 public class Cactus {
 
@@ -16,22 +17,19 @@ public class Cactus {
                 int color = cactusPixels[j][i] * 255;
                 g.setColor(new Color(color, color, color));
                 g.fillRect(i * pixelSize + xPos, 
-                           j * pixelSize + DinoConstants.GROUND_LEVEL - height, 
+                           j * pixelSize + DinoConstants.GROUND_LEVEL - height,
                            pixelSize, 
                            pixelSize);
             }
         }
+        System.out.println("xPos: "+ xPos);
     }
 
     public void moveCactus() {
         xPos -= pixelSize * 3;
         if(xPos < -100) {
-            resetPosition();
+            xPos = DinoConstants.SCREEN_WIDTH + 100 + (int) (Math.random() * 500);
         }
-    }
-
-    public void resetPosition() {
-        xPos = DinoConstants.SCREEN_WIDTH + 100 + (int) (Math.random() * 500);
     }
 
     public int getTopBoundary() {
