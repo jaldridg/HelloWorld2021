@@ -20,14 +20,14 @@ public class DinoGame extends Canvas implements KeyListener {
     private long timer = 0;
 
     public DinoGame() {
-        /*JFrame frame = new JFrame("Dino Game");
+        JFrame frame = new JFrame("Dino Game");
         setBackground(Color.white);
 
         addKeyListener(this);
         frame.add(this);
         frame.setSize(width, height);
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         repaint();
     }

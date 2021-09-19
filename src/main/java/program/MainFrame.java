@@ -1,7 +1,8 @@
 package src.main.java.program;
 
+import program.NASAPanel;
+import src.main.java.program.WeatherPanel;
 import src.main.java.utils.ScreenDimension;
-import src.main.java.program.APIPanel;
 import src.main.java.program.DinoGame.DinoGame;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
@@ -17,7 +18,7 @@ import java.awt.*;
  * @version September 18, 2021
  */
 
-public class MainFrame extends JFrame{
+public class MainFrame extends JFrame {
 
     public static void main(String[] args) {
         MainFrame mainFrame = new MainFrame("HDash");
@@ -28,25 +29,20 @@ public class MainFrame extends JFrame{
         JPanel[] panels = new JPanel[3];
 
         for (int i = 0; i < panels.length; i++) {
-            JPanel panel = new JPanel();
+            JPanel panel;
             Dimension panelSize = mainFrame.getPanelDimension();
-            if (i == 1) {
-                panel = addNasaPanel(panelSize);
-        for (int i = 0; i < 6; i++) {
 
-            if(i == 1) {
-                NASAPanel nasaPanel = new NASAPanel(mainFrame.getPanelDimension());
-                nasaPanel.doGet("https://api.nasa.gov/planetary/apod?api_key=APIKEY", "NASA", true);
-                panels[i] = nasaPanel;
+            if (i == 1) {
+                NASAPanel temp =  new NASAPanel(mainFrame.getPanelDimension());
+                temp.doGet("https://api.nasa.gov/planetary/apod?api_key=APIKEY", "NASA", true);
+                panel = temp;
+            } else if (i == 2) {
+                WeatherPanel temp = new WeatherPanel(mainFrame.getPanelDimension());
+                temp.doGet("https://api.openweathermap.org/data/2.5/onecall?lat=40.43&lon=-86.92&units=imperial&exclude=hourly,daily,alerts,minutely&appid=APIKEY", "WEATHER", false);
+                panel = temp;
             }
-            else if(i == 2) {
-                WeatherPanel weatherPanel = new WeatherPanel(mainFrame.getPanelDimension());
-                    weatherPanel.doGet("https://api.openweathermap.org/data/2.5/onecall?lat=40.43&lon=-86.92&units=imperial&exclude=hourly,daily,alerts,minutely&appid=APIKEY", "WEATHER", false);
-                panels[i] = weatherPanel;
-            }
-            //else if (i == 1)
-                //panel.add(new DinoGame());
             else {
+                panel = new JPanel();
                 panel.setPreferredSize(panelSize);
                 panel.setMinimumSize(panelSize);
             }
@@ -127,8 +123,8 @@ public class MainFrame extends JFrame{
         add(dinoPanel, mainFrameConstraints);
     }
 
-    private static APIPanel addNasaPanel(Dimension size) {
-        APIPanel panel = new APIPanel(size);
+    private static NASAPanel addNasaPanel(Dimension size) {
+        NASAPanel panel = new NASAPanel(size);
         panel.doGet("https://api.nasa.gov/planetary/apod?api_key=APIKEY", "NASA", true);
         //                                                   0123456789
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/ddHH:mm:ss");
@@ -173,6 +169,4 @@ public class MainFrame extends JFrame{
     public Dimension getPanelDimension() {
         return panelDimension;
     }
-
 }
-
