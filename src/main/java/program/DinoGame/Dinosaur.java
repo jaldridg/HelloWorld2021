@@ -5,17 +5,35 @@ import java.awt.*;
 public class Dinosaur {
 
     final int pixelSize = DinoConstants.PIXEL_SIZE;
-    final int[][] dinosaurPixels = DinoConstants.DINOSAUR_PIXELS;
+    final int[][] dinosaurPixelsFrameOne = DinoConstants.DINOSAUR_PIXELS_FRAME_ONE;
+    final int[][] dinosaurPixelsFrameTwo = DinoConstants.DINOSAUR_PIXELS_FRAME_TWO;
     final int[][] deadDinosaurPixels = DinoConstants.DEAD_DINOSAUR_PIXELS;
 
-    private int height = (dinosaurPixels.length - 3) * pixelSize;
+    private int height = (dinosaurPixelsFrameOne.length - 3) * pixelSize;
     private int defaultHeight = height;
     private int vel = 0;
 
+    private int frame = 0;
+
     public void paintDino(Graphics g) {
-        for(int i = 0; i < dinosaurPixels[0].length; i++) {
-            for(int j = 0; j < dinosaurPixels.length; j++) {
-                int color = dinosaurPixels[j][i] * 255;
+        int[][] pixels = new int[dinosaurPixelsFrameOne.length][dinosaurPixelsFrameOne[0].length];
+        if(!isJumping()) {
+            frame++;
+            if(frame < 5) {
+                pixels = dinosaurPixelsFrameOne;
+            } else if (frame < 9) {
+                pixels = dinosaurPixelsFrameTwo;
+            } else{
+                pixels = dinosaurPixelsFrameTwo;
+                frame = 0;
+            }
+        } else {
+            pixels = dinosaurPixelsFrameTwo;
+        }
+        
+        for(int i = 0; i < pixels[0].length; i++) {
+            for(int j = 0; j < pixels.length; j++) {
+                int color = pixels[j][i] * 255;
                 g.setColor(new Color(color, color, color));
                 g.fillRect(i * pixelSize + 100, 
                            j * pixelSize + DinoConstants.GROUND_LEVEL - height, 
@@ -26,9 +44,9 @@ public class Dinosaur {
     }
 
     public void paintDeadDino(Graphics g) {
-        for(int i = 0; i < dinosaurPixels[0].length; i++) {
-            for(int j = 0; j < dinosaurPixels.length; j++) {
-                int color = dinosaurPixels[j][i] * 255;
+        for(int i = 0; i < deadDinosaurPixels[0].length; i++) {
+            for(int j = 0; j < deadDinosaurPixels.length; j++) {
+                int color = deadDinosaurPixels[j][i] * 255;
                 g.setColor(new Color(color, color, color));
                 g.fillRect(i * pixelSize + 100, 
                            j * pixelSize + DinoConstants.GROUND_LEVEL - height, 
@@ -40,11 +58,26 @@ public class Dinosaur {
 
     public void moveDino() {
         height += vel;
-        vel -= 2;
+        vel -= 1;
         if(defaultHeight > height) {
             setDinoVelocity(0);
+            resetPosition();
         }
     }    
+
+    private boolean isJumping() {
+        return defaultHeight != height;
+    }
+
+    public void jump() {
+        if(!isJumping()) {
+            setDinoVelocity(pixelSize * 4);
+        }
+    }
+
+    public void resetPosition() {
+        height = defaultHeight;
+    }
 
     public int getDinoVelocity() {
         return vel;
@@ -55,10 +88,10 @@ public class Dinosaur {
     }
 
     public int getBottomBoundary() {
-        return DinoConstants.GROUND_LEVEL - height + (pixelSize * dinosaurPixels.length);
+        return DinoConstants.GROUND_LEVEL - height + (pixelSize * dinosaurPixelsFrameOne.length);
     }
 
     public int getRightBoundary() {
-        return 100 + (pixelSize * dinosaurPixels[0].length);
+        return 100 + (pixelSize * dinosaurPixelsFrameOne[0].length);
     }
 }

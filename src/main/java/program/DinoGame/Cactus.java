@@ -1,13 +1,13 @@
-package program.DinoGame;
+package src.main.java.program.DinoGame;
 
 import java.awt.*;
 
 public class Cactus {
 
-    private final int pixelSize = main.java.program.DinoGame.DinoConstants.PIXEL_SIZE;
-    private final int[][] cactusPixels = main.java.program.DinoGame.DinoConstants.CACTUS_PIXELS;
+    private final int pixelSize = DinoConstants.PIXEL_SIZE;
+    private final int[][] cactusPixels = DinoConstants.CACTUS_PIXELS;
 
-    private int xPos = main.java.program.DinoGame.DinoConstants.SCREEN_WIDTH + 100;
+    private int xPos = DinoConstants.SCREEN_WIDTH + 100;
  
     public void paintCactus(Graphics g) {
         int height = (cactusPixels.length - 3) * pixelSize;
@@ -16,24 +16,27 @@ public class Cactus {
                 int color = cactusPixels[j][i] * 255;
                 g.setColor(new Color(color, color, color));
                 g.fillRect(i * pixelSize + xPos, 
-                           j * pixelSize + main.java.program.DinoGame.DinoConstants.GROUND_LEVEL - height,
+                           j * pixelSize + DinoConstants.GROUND_LEVEL - height, 
                            pixelSize, 
                            pixelSize);
             }
         }
-        System.out.println("xPos: "+ xPos);
     }
 
     public void moveCactus() {
         xPos -= pixelSize * 3;
         if(xPos < -100) {
-            xPos = main.java.program.DinoGame.DinoConstants.SCREEN_WIDTH + 100 + (int) (Math.random() * 500);
+            resetPosition();
         }
+    }
+
+    public void resetPosition() {
+        xPos = DinoConstants.SCREEN_WIDTH + 100 + (int) (Math.random() * 500);
     }
 
     public int getTopBoundary() {
         int height = (cactusPixels.length - 3) * pixelSize;
-        return main.java.program.DinoGame.DinoConstants.GROUND_LEVEL - height;
+        return DinoConstants.GROUND_LEVEL - height;
     }
 
     public int getLeftBoundary() {
