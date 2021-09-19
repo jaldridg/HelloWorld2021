@@ -9,27 +9,30 @@ public class Cactus {
     private final int[][] cactusPixels = DinoConstants.CACTUS_PIXELS;
 
     private int xPos = DinoConstants.SCREEN_WIDTH + 100;
- 
+
     public void paintCactus(Graphics g) {
         int height = (cactusPixels.length - 3) * pixelSize;
         for(int i = 0; i < cactusPixels[0].length; i++) {
             for(int j = 0; j < cactusPixels.length; j++) {
                 int color = cactusPixels[j][i] * 255;
                 g.setColor(new Color(color, color, color));
-                g.fillRect(i * pixelSize + xPos, 
-                           j * pixelSize + DinoConstants.GROUND_LEVEL - height,
-                           pixelSize, 
-                           pixelSize);
+                g.fillRect(i * pixelSize + xPos,
+                        j * pixelSize + DinoConstants.GROUND_LEVEL - height,
+                        pixelSize,
+                        pixelSize);
             }
         }
-        System.out.println("xPos: "+ xPos);
     }
 
     public void moveCactus() {
         xPos -= pixelSize * 3;
         if(xPos < -100) {
-            xPos = DinoConstants.SCREEN_WIDTH + 100 + (int) (Math.random() * 500);
+            resetPosition();
         }
+    }
+
+    public void resetPosition() {
+        xPos = DinoConstants.SCREEN_WIDTH + 100 + (int) (Math.random() * 500);
     }
 
     public int getTopBoundary() {

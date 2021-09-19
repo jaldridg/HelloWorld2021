@@ -1,15 +1,15 @@
-package program;
+package src.main.java.program;
+
 import java.awt.*;
 import org.json.JSONObject;
-import java.awt.event.*;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.*;
 import javax.swing.*;
 import javax.imageio.*;
 import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 public class NASAPanel extends JPanel {
     private JPanel panel;
@@ -18,11 +18,14 @@ public class NASAPanel extends JPanel {
     private JSONObject getRequestJSON;
     private BufferedImage buffImg;
     private Dimension size;
+    private DateTimeFormatter dtf;
+    private JLabel timeLabel;
     public NASAPanel(Dimension size) {
         this.size = size;
         this.setMinimumSize(size);
         this.setPreferredSize(size);
         this.setBackground(Color.darkGray);
+        dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
         try {
             File authFile = new File("authkey.txt");
             Scanner sc = new Scanner(authFile);
@@ -31,6 +34,17 @@ public class NASAPanel extends JPanel {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        LocalDateTime now = LocalDateTime.now();
+        String formattedTime = "<html><div style=\"text-align:center\">" +
+                dtf.format(now).split(" ")[0] + "<br>" + dtf.format(now).split(" ")[1] +
+                "</div></html>";
+        timeLabel = new JLabel(formattedTime);
+        timeLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
+        timeLabel.setForeground(Color.white);
+        this.setLayout(new GridBagLayout());
+        timeLabel.setHorizontalAlignment(JLabel.CENTER);
+        timeLabel.setVerticalAlignment(JLabel.CENTER);
+        this.add(timeLabel);
     }
     // CREDIT: https://zetcode.com/java/getpostrequest/
     public JSONObject getRequest(String requestURL, String authType) {
@@ -73,10 +87,18 @@ public class NASAPanel extends JPanel {
                 e.printStackTrace();
             }
         }
-
-
-
     }
+
+    public void updateLabels() {
+        LocalDateTime now = LocalDateTime.now();
+        timeLabel.setText(
+                "<html><div style=\"text-align:center\">" +
+                        dtf.format(now).split(" ")[0] + "<br>" + dtf.format(now).split(" ")[1] +
+                        "</div></html>"
+        );
+    }
+
+
 
 
     @Override
@@ -89,16 +111,5 @@ public class NASAPanel extends JPanel {
             g2.drawImage(buffImg, 0, 0, w, h, null);
 
         }
-
-
     }
-
-
-
-
-
-
-
-
-
 }

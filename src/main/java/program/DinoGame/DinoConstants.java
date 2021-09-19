@@ -1,13 +1,16 @@
 package src.main.java.program.DinoGame;
 
+import src.main.java.utils.ScreenDimension;
+
 public final class DinoConstants {
 
-    public static final int SCREEN_WIDTH = 1280;
-    public static final int SCREEN_HEIGHT = 360;
-    public static final int GROUND_LEVEL = 250;
-    public static final int PIXEL_SIZE = 4;
+    public static final int SCREEN_WIDTH = ScreenDimension.getScreenWidth() * 2 / 3;
+    public static final int SCREEN_HEIGHT = ScreenDimension.getScreenHeight() * 2 / 3 / 2;
+    public static final int PIXEL_SIZE = (SCREEN_WIDTH / 200 + SCREEN_HEIGHT / 100) / 2;
+
+    public static final int GROUND_LEVEL = PIXEL_SIZE * 60;
     
-    public static final int[][] DINOSAUR_PIXELS_FRAME_ONE = 
+    public static final int[][] DINOSAUR_PIXELS_FRAME_ONE =
     { // 0  1  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20
         {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
         {1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -30,7 +33,7 @@ public final class DinoConstants {
         {1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1},
         {1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
     };
-    public static final int[][] DINOSAUR_PIXELS_FRAME_TWO = 
+    public static final int[][] DINOSAUR_PIXELS_FRAME_TWO =
     { // 0  1  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20
         {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
         {1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},

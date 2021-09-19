@@ -1,7 +1,10 @@
 package src.main.java.program.DinoGame;
 
 import java.awt.*;
+import java.awt.event.*;
 import src.main.java.program.DinoGame.DinoConstants;
+
+import javax.swing.JFrame;
 
 public class Dinosaur {
 
@@ -31,28 +34,27 @@ public class Dinosaur {
         } else {
             pixels = dinosaurPixelsFrameTwo;
         }
-        
+
         for(int i = 0; i < pixels[0].length; i++) {
             for(int j = 0; j < pixels.length; j++) {
                 int color = pixels[j][i] * 255;
                 g.setColor(new Color(color, color, color));
-                g.fillRect(i * pixelSize + 100, 
-                           j * pixelSize + DinoConstants.GROUND_LEVEL - height, 
-                           pixelSize, 
-                           pixelSize);
+                g.fillRect(i * pixelSize + 100,
+                        j * pixelSize + DinoConstants.GROUND_LEVEL - height,
+                        pixelSize,
+                        pixelSize);
             }
         }
     }
-
     public void paintDeadDino(Graphics g) {
         for(int i = 0; i < deadDinosaurPixels[0].length; i++) {
             for(int j = 0; j < deadDinosaurPixels.length; j++) {
                 int color = deadDinosaurPixels[j][i] * 255;
                 g.setColor(new Color(color, color, color));
-                g.fillRect(i * pixelSize + 100, 
-                           j * pixelSize + DinoConstants.GROUND_LEVEL - height, 
-                           pixelSize, 
-                           pixelSize);
+                g.fillRect(i * pixelSize + 100,
+                        j * pixelSize + DinoConstants.GROUND_LEVEL - height,
+                        pixelSize,
+                        pixelSize);
             }
         }
     }
@@ -64,7 +66,7 @@ public class Dinosaur {
             setDinoVelocity(0);
             resetPosition();
         }
-    }    
+    }
 
     private boolean isJumping() {
         return defaultHeight != height;

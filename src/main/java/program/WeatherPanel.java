@@ -1,4 +1,5 @@
 package src.main.java.program;
+
 import java.awt.*;
 import org.json.JSONObject;
 import java.awt.event.*;
@@ -44,7 +45,7 @@ public class WeatherPanel extends JPanel {
     // CREDIT: https://zetcode.com/java/getpostrequest/
     public JSONObject getRequest(String requestURL, String authType) {
         if(authType.equalsIgnoreCase("WEATHER")) {
-                requestURL = requestURL.replace("APIKEY", weatherAuth);
+            requestURL = requestURL.replace("APIKEY", weatherAuth);
         }
 
         try {
@@ -88,21 +89,26 @@ public class WeatherPanel extends JPanel {
         this.temp = getRequestJSON.getJSONObject("current").getDouble("temp");
         String weatherDesc = getRequestJSON.getJSONObject("current").getJSONArray("weather").getJSONObject(0).getString("main");
         int humidity = getRequestJSON.getJSONObject("current").getInt("humidity");
-        tempIndicator.setText(""+ temp + "°F\n" + weatherDesc + "\nHumidity: " + humidity + "%");
+        tempIndicator.setText("<html><div style=\"text-align:center\">"+ temp + "°F<br>Weather: " + weatherDesc + "<br>Humidity: " + humidity + "%</div></html>");
     }
 
     private void loadBackground() {
+
+
+
+
+
         try {
+            https://c.tenor.com/JW38g6eBVFoAAAAC/clouds-flying.gif
+            //buffImg = ImageIO.read(new URL("https://c.tenor.com/JW38g6eBVFoAAAAC/clouds-flying.gif"));
             buffImg = ImageIO.read(new URL("https://images.unsplash.com/photo-1603376277241-70b32265cf10?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Ymx1ZSUyMGNsb3Vkc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"));
             Image result = buffImg.getScaledInstance(size.width, size.height, Image.SCALE_DEFAULT);
             buffImg.getGraphics().drawImage(result, 0, 0, null);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
-
-
-
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -114,16 +120,5 @@ public class WeatherPanel extends JPanel {
             g2.drawImage(buffImg, 0, 0, w, h, null);
 
         }
-
-
     }
-
-
-
-
-
-
-
-
-
 }

@@ -2,8 +2,9 @@ package src.main.java.program.DinoGame;
 
 import java.awt.*;
 import java.awt.event.*;
+import src.main.java.program.DinoGame.ScoreBoard;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 import src.main.java.program.DinoGame.Dinosaur;
 import src.main.java.program.DinoGame.DinoConstants;
 import src.main.java.program.DinoGame.Cactus;
@@ -16,21 +17,18 @@ public class DinoGame extends Canvas implements KeyListener {
     private Dinosaur dino = new Dinosaur();
     private Cactus cactus = new Cactus();
     private ScoreBoard score = new ScoreBoard();
-    
+
     private double fps = 30;
     private long timer = 0;
 
     private boolean alive = true;
 
     public DinoGame() {
-        JFrame frame = new JFrame("Dino Game");
         setBackground(Color.white);
 
         addKeyListener(this);
-        frame.add(this);
-        frame.setSize(width, height);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(width, height);
+        setVisible(true);
 
         repaint();
     }
@@ -50,16 +48,16 @@ public class DinoGame extends Canvas implements KeyListener {
 
             // Draw ground
             g.setColor(Color.black);
-            g.fillRect(0, DinoConstants.GROUND_LEVEL, width, 3);  
+            g.fillRect(0, DinoConstants.GROUND_LEVEL, width, 3);
 
             // Draw score
             score.addScore();
             Font font = new Font(Font.SERIF, Font.BOLD, DinoConstants.PIXEL_SIZE * 4);
             g.setFont(font);
             g.drawString("HI  " + score.getHighScore() + "   " + score.getScore(), width - 200, 50);
-            
+
             if(isColliding())
-             {
+            {
                 dino.paintDeadDino(g);
 
                 // Redraw ground
@@ -68,11 +66,10 @@ public class DinoGame extends Canvas implements KeyListener {
 
                 score.setHighScore();
                 alive = false;
-            }   
+            }
         }
         repaint();
     }
-
     private boolean isColliding() {
         boolean verticalIntersection = cactus.getTopBoundary() < dino.getBottomBoundary();
         boolean horizontalIntersection = cactus.getLeftBoundary() < dino.getRightBoundary();
@@ -84,7 +81,7 @@ public class DinoGame extends Canvas implements KeyListener {
 
     public void keyTyped(KeyEvent e) { }
     public void keyReleased(KeyEvent e) { }
-    public void keyPressed(KeyEvent e) { 
+    public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == 32) {
             if(alive) {
                 dino.jump();
@@ -92,7 +89,7 @@ public class DinoGame extends Canvas implements KeyListener {
                 dino.resetPosition();
                 cactus.resetPosition();
                 alive = true;
-            }            
+            }
         }
     }
 

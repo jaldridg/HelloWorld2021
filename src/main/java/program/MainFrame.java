@@ -1,7 +1,8 @@
 package src.main.java.program;
 
-import program.NASAPanel;
+import src.main.java.program.NASAPanel;
 import src.main.java.program.WeatherPanel;
+import src.main.java.program.ProgramPanel;
 import src.main.java.utils.ScreenDimension;
 import src.main.java.program.DinoGame.DinoGame;
 import java.time.format.DateTimeFormatter;
@@ -20,39 +21,30 @@ import java.awt.*;
 
 public class MainFrame extends JFrame {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         MainFrame mainFrame = new MainFrame("HDash");
         mainFrame.setSize(mainFrame.getMainFrameSize());
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel[] panels = new JPanel[3];
 
-        for (int i = 0; i < panels.length; i++) {
-            JPanel panel;
-            Dimension panelSize = mainFrame.getPanelDimension();
-
-            if (i == 1) {
-                NASAPanel temp =  new NASAPanel(mainFrame.getPanelDimension());
-                temp.doGet("https://api.nasa.gov/planetary/apod?api_key=APIKEY", "NASA", true);
-                panel = temp;
-            } else if (i == 2) {
-                WeatherPanel temp = new WeatherPanel(mainFrame.getPanelDimension());
-                temp.doGet("https://api.openweathermap.org/data/2.5/onecall?lat=40.43&lon=-86.92&units=imperial&exclude=hourly,daily,alerts,minutely&appid=APIKEY", "WEATHER", false);
-                panel = temp;
-            }
-            else {
-                panel = new JPanel();
-                panel.setPreferredSize(panelSize);
-                panel.setMinimumSize(panelSize);
-            }
-            panel.setBackground(Color.red);
-            panels[i] = panel;
-        }
-
+        mainFrame.createPanelArray();
+        JPanel[] panels = new JPanel[]{mainFrame.programPanel, mainFrame.nasaPanal, mainFrame.weatherPanel};
         mainFrame.addInitialPanels(panels);
         mainFrame.setVisible(true);
+
+        mainFrame.dinoGame.repaint();
+
+        while (true) {
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            mainFrame.nasaPanal.updateLabels();
+        }
     }
+
 
     //Define sizes for the mainFrame
     private int mainFrameWidth;
@@ -63,6 +55,10 @@ public class MainFrame extends JFrame {
     private Dimension panelDimension;
 
     private final GridBagConstraints mainFrameConstraints;
+    private NASAPanel nasaPanal;
+    private ProgramPanel programPanel;
+    private WeatherPanel weatherPanel;
+    private final DinoGame dinoGame = new DinoGame();
 
     public MainFrame(String frameName) {
         super(frameName);
@@ -84,6 +80,24 @@ public class MainFrame extends JFrame {
 
     public void updatePanelDimension (Dimension dim) {
         this.panelDimension = (dim);
+    }
+
+    public void createPanelArray() {
+
+        Dimension panelSize = getPanelDimension();
+        nasaPanal = createNasaPanel(getMainFrameSize());
+        weatherPanel = new WeatherPanel(getPanelDimension());
+        weatherPanel.doGet("https://api.openweathermap.org/data/2.5/onecall?lat=40.43&lon=-86.92&units=imperial&exclude=hourly,daily,alerts,minutely&appid=APIKEY", "WEATHER", false);
+        programPanel = new ProgramPanel(getPanelDimension());
+
+        nasaPanal.setPreferredSize(panelSize);
+        nasaPanal.setMinimumSize(panelSize);
+
+        weatherPanel.setPreferredSize(panelSize);
+        weatherPanel.setMinimumSize(panelSize);
+
+        programPanel.setPreferredSize(panelSize);
+        programPanel.setMinimumSize(panelSize);
     }
 
     public void addInitialPanels(JPanel[] panels) {
@@ -114,51 +128,19 @@ public class MainFrame extends JFrame {
 
         //add dino Panel
         JPanel dinoPanel = new JPanel();
+        dinoPanel.add(dinoGame);
         dinoPanel.setPreferredSize(sortingSize);
         dinoPanel.setMinimumSize(sortingSize);
-        dinoPanel.setBackground(Color.green);
-        dinoPanel.add(new DinoGame());
+        dinoPanel.setBackground(Color.darkGray);
 
         mainFrameConstraints.gridy = 1;
+        mainFrameConstraints.anchor = GridBagConstraints.CENTER;
         add(dinoPanel, mainFrameConstraints);
     }
 
-    private static NASAPanel addNasaPanel(Dimension size) {
+    private static NASAPanel createNasaPanel(Dimension size) {
         NASAPanel panel = new NASAPanel(size);
         panel.doGet("https://api.nasa.gov/planetary/apod?api_key=APIKEY", "NASA", true);
-        //                                                   0123456789
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/ddHH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        String date = dtf.format(now).substring(0, 10);
-        String time = dtf.format(now).substring(10);
-
-        JLabel timeLabel = new JLabel(time);
-        JLabel dateLabel = new JLabel(date);
-
-        timeLabel.setOpaque(false);
-        timeLabel.setFont(new Font("Serif", Font.PLAIN, 60));
-        timeLabel.setForeground(Color.white);
-
-        dateLabel.setOpaque(false);
-        dateLabel.setFont(new Font("Serif", Font.PLAIN, 60));
-        dateLabel.setForeground(Color.white);
-
-        panel.setLayout(new GridBagLayout());
-
-        timeLabel.setHorizontalAlignment(JLabel.CENTER);
-        timeLabel.setVerticalAlignment(JLabel.CENTER);
-
-        dateLabel.setHorizontalAlignment(JLabel.CENTER);
-        dateLabel.setVerticalAlignment(JLabel.CENTER);
-
-        GridBagConstraints panelConstraints = new GridBagConstraints();
-        panelConstraints.gridx = 0;
-
-        panelConstraints.gridy = 0;
-        panel.add(dateLabel, panelConstraints);
-
-        panelConstraints.gridy = 1;
-        panel.add(timeLabel, panelConstraints);
         return panel;
     }
 
